@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Findit-Rent</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <style>
+    :root {
+      --red: #ff5a3c;
+      --light-red: #f9edeb;
+    }
+
+    * {
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+
+    header {
+      z-index: 1000;
+      background: linear-gradient(120deg, #fdfcfb 0%, #e2d1c3 100%);
+      padding: 1.5rem 9%;
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card {
+      padding: 30px;
+      border: .1rem solid rgba(0, 0, 0, .2);
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+      border-radius: .5rem;
+      background: #fff;
+    }
+
+    body {
+      background: linear-gradient(120deg, #fdfcfb 0%, #e2d1c3 100%);
+      width: 100%;
+    }
+
+    header .logo {
+      font-weight: bolder;
+      font-size: 2.5rem;
+      color: #000;
+    }
+
+    header .logo span {
+      color: var(--red);
+    }
+
+    header .top-nav a {
+      color: #000;
+      font-size: 2rem;
+      padding: 0 1.5rem;
+    }
+
+    header .top-nav a:hover {
+      color: var(--red);
+    }
+
+    header .icons #menu-bars,
+    header .icons a {
+      height: 4.5rem;
+      line-height: 4.5rem;
+      width: 5rem;
+      font-size: 2rem;
+      border-radius: .5rem;
+      color: var(--red);
+      background: var(--light-red);
+      text-align: center;
+    }
+
+    * {
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+
+    html {
+      font-size: 80%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scroll-padding-top: 7rem;
+    }
+
+
+    section {
+      padding: 2rem 9%;
+    }
+
+    .btn {
+      margin-top: 1rem;
+      display: inline-block;
+      padding: .8rem 3.5rem;
+      border: 1px solid black;
+      border-radius: .5rem;
+      font-size: 1.7rem;
+      color: var(--red);
+      background: #fff;
+      cursor: pointer;
+      text-align: center;
+
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .headlogo {
+      text-align: center;
+      color: #000;
+      font-size: 3rem;
+    }
+
+    .img {
+      height: 200px;
+      width: 200px;
+    }
+
+    .headlogo span {
+      color: var(--red);
+      background: var(--light-red);
+      border-radius: .5rem;
+      padding: .2rem 0;
+
+    }
+
+    header .icons #menu-bars:hover,
+    header .icons a:hover {
+      background-color: var(--red);
+      color: #fff;
+    }
+
+    .openbtn {
+      background-color: var(--light-red);
+      color: var(--red);
+    }
+
+    .openbtn:hover {
+      background-color: var(--red);
+      color: var(--light-red);
+    }
+
+    .card-body {
+      padding: 30px;
+      margin: 10px 30px 10px 30px;
+      border: .1rem solid rgba(0, 0, 0, .2);
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+      border-radius: .5rem;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .card-body:hover {
+      z-index: 2;
+      box-shadow: 0 0 60px -5px #333;
+    }
+
+    header .icons #menu-bars {
+      display: none;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    .next {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 120px;
+      margin-top: 50px;
+
+    }
+
+    .rating {
+      font-size: 20px;
+    }
+
+    .btn-2 {
+      background-color: #333;
+      color: #f7f7f7;
+      padding: 30px 50px;
+    }
+
+    .ren1 {
+      display: inline;
+      background-color: var(--light-red);
+      color: var(--red);
+      padding: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .ren2 {
+      display: inline;
+      font-size: 15px;
+      display: flex;
+      height: 100hv;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light-red);
+    }
+
+    .input-group-text {
+      font-weight: 700;
+    }
+
+    .filter {
+      z-index: 1000;
+      height: 70px;
+      padding: 10px 0;
+      background-color: linear-gradient(120deg, #fdfcfb 0%, #e2d1c3 100%);
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    }
+
+    .filter-btn {
+      margin-left: auto;
+      font-size: 1.3rem;
+      font-weight: 700;
+      padding: 15px;
+      color: black;
+      border: 3px solid black;
+    }
+
+    .nav-items {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: black;
+    }
+
+    .filter-int {
+      font-size: 2%;
+    }
+
+    .header {
+      background: linear-gradient(120deg, #fdfcfb 0%, #e2d1c3 100%);
+    }
+
+    .top-nav {
+      padding: 10px 20px;
+    }
+
+    .offcanvas-body {
+      text-align: center;
+    }
+
+    .class-name:after {
+      content: " ";
+      display: block;
+      border-bottom: 0.5px solid #9E9E9E;
+      margin: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--   Navbar -->
+  <header class="navbar top-nav">
+    <div class="container-fluid">
+      <a class="headlogo" href="/home"><span>Find</span>It</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse nav-items justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sale/addhome">Sell</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/rent">Rent</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" class="logout" href="/logout"> <button class="btn btn-sm">LOGOUT</button> </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!--   Filter bar -->
+
+  <nav class="navbar filter">
+    <div class="container-fluid">
+      <button class="navbar-toggler filter-btn" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+        <span>Add Filters</span>
+      </button>
+      <div class="offcanvas offcanvas-end filter-int text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Filters</h5>
+          <button type="button" class="btn btn-close btn-dark" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
+        </div>
+        <div class="offcanvas-body">
+          <form class="d-flex mt-3" method="post" action="/rent">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item dropdown">
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupSelect01">Property type</label>
+                  <select class="form-select" name="type" id="inputGroupSelect01" required>
+                    <option selected></option>
+                    <option value="ground_floor">Ground Floor</option>
+                    <option value="half_basement">Half Basement</option>
+                    <option value="maisonette">Maisonette</option>
+                    <option value="penthouse">penthouse</option>
+                    <option value="raised_ground_floor">Raised Ground Floor</option>
+                    <option value="roof_storey">Roof Storey</option>
+                    <option value="terraced_flat">Terraced flat</option>
+                    <option value="loft">Loft</option>
+                    <option value="Store_house">Store Houses</option>
+                  </select>
+                </div>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="nav-item dropdown">
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupSelect01">Quality</label>
+                  <select class="form-select" name="quality" id="inputGroupSelect01" required>
+                    <option selected></option>
+                    <option value="simple">Simple</option>
+                    <option value="normal">Normal</option>
+                    <option value="sophisticated">Sophisticated</option>
+                    <option value="fully_renovated">Renovated</option>
+                    <option value="first_time_use">New</option>
+                    <option value="luxury">Luxury</option>
+                  </select>
+                </div>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="nav-item dropdown">
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupSelect01">City</label>
+                  <select class="form-select" name="city" id="inputGroupSelect01" required>
+                    <option selected></option>
+                    <option value="Bayern">Bayern</option>
+                    <option value="Saarland">Saarland</option>
+                    <option value="Sachsen">Sachsen</option>
+                    <option value="Bremen">Bremen</option>
+                    <option value="Hessen">Hessen</option>
+                    <option value="Hamburg">Hamburg</option>
+                  </select>
+                </div>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="nav-item dropdown">
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupSelect01">Ratings</label>
+                  <select class="form-select" name="rate" id="inputGroupSelect01" required>
+                    <option selected></option>
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                  </select>
+                </div>
+                <hr class="dropdown-divider">
+              </li>
+              <button class="btn btn-success" type='submit'>Apply Filters</button>
+            </ul>
+          </form>
+          <div>
+            <div>
+              <div class="class-name">
+              </div>
+              <p style="font-size:1.5rem;">OR</p>
+              <div>
+                <div class="class-name">
+                </div>
+              </div>
+              <form class="d-flex mt-3" method="GET" action="/rent">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item dropdown justify-content-center">
+                    <button class="btn" style="margin-bottom:20px;" type='submit' disabled>Search By Keyword</button>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Search"
+                      aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </li>
+                  <hr class="dropdown-divider">
+                </ul>
+              </form>
+            </div>
+
+          </div>
+        </div>
+  </nav>
+
+  <!-- content of the page -->
+
+
+  <div class="midpage">
+    <div style="margin-top:1%" class="row">
+      <% if(home.length===0) {%>
+      <h1>No Results found</h1>
+      <% } %>
+      <% if(home.length!=0){ %>
+      <% home.forEach(function(mat){  %>
+
+      <div style=" margin:20px auto;width: 300px;text-align: center;" class="card col-md-3 col-lg-3 col-sm-12">
+        <div class="card-body">
+          <center>
+
+            <div class="img-div">
+              <img class="img" src="/uploads/<%= mat.telekomTvOffer %>.jpg" alt="home">
+            </div>
+          </center>
+        </div>
+        <div class="input-group">
+          <h3 class="input-group-text ren1">City</h3>
+          <h3 class="ren2 form-control"><%= mat.regio1 %></h3>
+        </div>
+        <div class="input-group">
+          <h3 class="input-group-text ren1">Rent</h3>
+          <h3 class="ren2 form-control"> $ <%= mat.totalRent %></h3>
+        </div>
+        <h4 class="rating"><%= '⭐'.repeat(mat.Rating) %></h4>
+        <a href="/homedetails/:<%= mat._id %>"><button class="btn openbtn">Open</button></a>
+      </div>
+
+      <% }) %>
+    </div>
+    <div class="next">
+      <a href='/rent'><button class="btn-2 btn-lg">Next Page</button></a>
+      <% } %>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

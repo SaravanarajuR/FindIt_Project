@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <title>Verify User</title>
+  <style>
+    :root {
+      --red: #ff5a3c;
+      --light-red: #f9edeb;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(120deg, var(--light-red) 0%, #e2d1c3 100%);
+    }
+
+    .top {
+      z-index: 1000;
+      border: .1rem solid rgba(0, 0, 0, .2);
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+      background: var(--light-red);
+      height: 50vh;
+      width: 60%;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+
+    }
+
+    .msg {
+      background-color: (--light-red);
+      color: var(--red);
+      padding: 10px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .input-group-text {
+      background-color: var(--light-red);
+      color: var(--red);
+    }
+
+    .btn {
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    .error {
+      background: var(--light-red);
+      padding: 10px 20px;
+      border: none;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color:red;
+    }
+
+    .head-text {
+      font-weight: 700;
+      color: red;
+      font-size: 1.3rem;
+      margin: 20px;
+    }
+
+    @media(max-width:991px) {
+      .top {
+        width: 90%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <form action="/verify" method="post" class="top">
+    <% if(message[1]!='') { %>
+    <button class="error" disabled><%= message[1] %></button>
+    <% } %>
+    <p class="msg">An OTP is sent to your mail</p>
+    <p id="get" style="background-color:white;color:var(--red);text-align:center;padding:5px;"><%= message[0] %></p>
+    <input style="visibility:hidden" type="radio" id="html" name="mail">
+    <label for="html" checked></label>
+    <div class="input-group">
+      <label for="otp" class="input-group-text" required>Enter Your OTP</label>
+      <input type=text class="form-control" name="otp"></input>
+    </div>
+    <button type="submit" class="input-group-text btn">verify</button><br>
+    <p class="head-text">Your Otp Will Expire in 5 Minute</p>
+  </form>
+
+</body>
+<script>
+  document.getElementById("html").checked = true;
+  document.getElementById("html").value = document.getElementById("get").innerText;
+</script>
+
+</html>
