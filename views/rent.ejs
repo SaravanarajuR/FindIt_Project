@@ -460,17 +460,21 @@
     <div  class='nextprev'>
     <% if(page>1){ %>
     <div class="next">
-      <% if(url===''){ %>
+      <% if(url==='' && filters===""){ %>
         <a href='/rent?page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
-      <% }else{ %>
+      <% }else if(filters="" && url.length>0){ %>
               <a href='/rent?search=<%= url %>&page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
+        <% }else if(!filters===""){ %>
+             <a href='/rent?filter=<%= filters %>&page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
         <% } %>
     </div>
     <% } %>
-    <% if(url===''){ %>
+    <% if(url==='' && filters===""){ %>
       <a href='/rent?page=<%= Number(page)+1 %>'><button class="btn btn-lg">Next Page</button></a>
-      <% }else{ %>
+      <% }else if(filters="" && url.length>0){ %>
         <a href='/rent?search=<%= url %>&page=<%= Number(page)+1 %>'><button class="btn btn-lg">Next Page</button></a>
+        <% }else if(!filters===""){ %>
+             <a href='/rent?filter=<%= filters %>&page=<%= Number(page)+1 %>'><button class="btn btn-lg">Next Page</button></a>
         <% } %>
     </div>
   </div>
