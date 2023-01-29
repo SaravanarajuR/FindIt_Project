@@ -30,21 +30,33 @@ router.get("/", async function (req, res) {
             home: found,
             page: req.query.page || 1,
             total: await findLength(),
+            url: "",
           });
         });
     } else {
+      const page = Number(req.query.page) || 1;
+      const contentPerPage = 20;
+      const toSkip = (page - 1) * contentPerPage;
       Home.find({
         $text: { $search: req.query.search },
       })
-        .limit(100)
+        .skip(toSkip)
+        .limit(contentPerPage)
         .then((f) => {
           f.sort((a, b) => {
             if (a.Rating >= b.Rating) return 1;
             if (a.Rating < b.Rating) return -1;
             else return 0;
           }).reverse();
+          const totalCount = f.length / 20;
           if (f) {
-            res.render("rent", { home: f.slice(0, 20) });
+            res.render("rent", {
+              home: f,
+              page: req.query.page || 1,
+              total: totalCount,
+              url: req.query.search,
+              filter: "false",
+            });
           } else {
             res.render("rent", { home: [] });
           }
@@ -56,20 +68,31 @@ router.get("/", async function (req, res) {
 });
 
 router.post("/", (req, res) => {
+  const page = Number(req.query.page) || 1;
+  const contentPerPage = 20;
+  const toSkip = (page - 1) * contentPerPage;
   Home.find({
     regio1: req.body.city,
     Rating: req.body.rate,
     interiorQuality: req.body.quality,
     typeOfFlat: req.body.type,
-  }).then((f) => {
-    f = f.slice(1, 20);
-    f.sort((a, b) => {
-      if (a.Rating >= b.totalRent) return 1;
-      if (a.Rating < b.totalRent) return -1;
-      else return 0;
-    }).reverse();
-    res.render("rent", { home: f.slice(0, 20) });
-  });
+  })
+    .skip(toSkip)
+    .limit(contentPerPage)
+    .then((f) => {
+      f.sort((a, b) => {
+        if (a.Rating >= b.totalRent) return 1;
+        if (a.Rating < b.totalRent) return -1;
+        else return 0;
+      }).reverse();
+      const totalCount = f.length;
+      res.render("rent", {
+        home: f,
+        page: req.query.page || 1,
+        total: totalCount,
+        url: "",
+      });
+    });
 });
 
 module.exports = router;
