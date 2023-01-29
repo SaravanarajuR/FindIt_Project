@@ -451,22 +451,22 @@
      <div  class='nextprev-top'>
     <% if(page>1){ %>
     <div class="next-1">
-      <% if(url==='' && filters===""){ %>
+      <% if(url.length===0 && filters.length===0){ %>
         <a href='/rent?page=<%= Number(page)-1 %>'><button class="btn btn-2 btn-lg">previous Page</button></a>
-      <% }else if(filters="" && url.length>0){ %>
+      <% }else if(url.length>0){ %>
               <a href='/rent?search=<%= url %>&page=<%= Number(page)-1 %>'><button class="btn btn-2 btn-lg">previous Page</button></a>
-        <% }else if(!filters===""){ %>
+         <% }else if(filters.length>0){ %>
              <a href='/rent?filter=<%= filters %>&page=<%= Number(page)-1 %>'><button class="btn btn-2 btn-lg">previous Page</button></a>
         <% } %>
     </div>
     <% } %>
      <% if(page<total){ %> 
       <div class="next-2">
-    <% if(url==='' && filters===""){ %>
+    <% if(url.length===0 && filters.length===0){ %>
       <a href='/rent?page=<%= Number(page)+1 %>'><button class="btn btn-2 btn-lg">Next Page</button></a>
-      <% }else if(filters="" && url.length>0){ %>
+      <% }else if(url.length>0){ %>
         <a href='/rent?search=<%= url %>&page=<%= Number(page)+1 %>'><button class="btn btn-2 btn-lg">Next Page</button></a>
-        <% }else if(!filters===""){ %>
+         <% }else if(filters.length>0){ %>
              <a href='/rent?filter=<%= filters %>&page=<%= Number(page)+1 %>'><button class="btn btn-2 btn-lg">Next Page</button></a>
         <% } %>
     </div>
@@ -511,22 +511,27 @@
     <div  class='nextprev'>
     <% if(page>1){ %>
     <div class="next">
-      <% if(url==='' && filters===""){ %>
+      <% if(url.length===0 && filters.length===0){ %>
         <a href='/rent?page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
-      <% }else if(filters="" && url.length>0){ %>
+      <% }else if(url.length>0){ %>
               <a href='/rent?search=<%= url %>&page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
-        <% }else if(!filters===""){ %>
+        <% }else if(filters.length>0){ %>
              <a href='/rent?filter=<%= filters %>&page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
         <% } %>
     </div>
     <% } %>
-    <% if(url==='' && filters===""){ %>
-      <a href='/rent?page=<%= Number(page)+1 %>'><button class="btn btn-lg">Next Page</button></a>
-      <% }else if(filters="" && url.length>0){ %>
+     <% if(page<total){ %> 
+      <div class="next">
+    <% if(url.length===0 && filters.length===0){ %>
+      <a href='/rent?page=<%= Number(page)+1 %>'><button class="btn btn-2 btn-lg">Next Page</button></a>
+      <% }else if(url.length>0){ %>
         <a href='/rent?search=<%= url %>&page=<%= Number(page)+1 %>'><button class="btn btn-lg">Next Page</button></a>
-        <% }else if(!filters===""){ %>
+        <% }else if(filters.length>0){ %>
              <a href='/rent?filter=<%= filters %>&page=<%= Number(page)+1 %>'><button class="btn btn-lg">Next Page</button></a>
         <% } %>
+    </div>
+          <% } %>
+          </div>
     </div>
   </div>
   </div>
