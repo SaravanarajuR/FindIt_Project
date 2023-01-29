@@ -30,6 +30,16 @@ const homeSchema = {
   lastRefurbish: String,
   Rating: Number,
   mail: String,
+  new: {
+    type: "Object",
+    created: {
+      value: "TRUE",
+      createdAt: {
+        expiresAt: 1000 * 60 * 60 * 24 * 2,
+        default: Date.now(),
+      },
+    },
+  },
 };
 
 module.exports = mongoose.model("Home", homeSchema);

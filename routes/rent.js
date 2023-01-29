@@ -1,19 +1,23 @@
 const express = require("express");
-const { appendFile } = require("fs");
 const router = express.Router();
-const flash = require("connect-flash");
 
 const Home = require("../models/homeModel");
 
-router.get("/", (req, res) => {
+function findLength() {
+  const count = Home.count({});
+  return count;
+}
+
+router.get("/", async function (req, res) {
   if (req.session.isAuthenticated) {
     if (!req.query.search) {
-      let rand = Math.floor(Math.random() * 10000);
+      const page = req.query.page || 1;
+      const contentPerPage = 20;
+      const toSkip = (page - 1) * contentPerPage;
       Home.find()
-        .where("scoutId")
-        .gt(rand)
-        .lt(rand + 21)
-        .then((found) => {
+        .skip(toSkip)
+        .limit(contentPerPage)
+        .then(async (found) => {
           found
             .sort((a, b) => {
               if (a.Rating >= b.Rating) return 1;
@@ -21,7 +25,12 @@ router.get("/", (req, res) => {
               else return 0;
             })
             .reverse();
-          res.render("rent", { home: found });
+          const totalPages = Math.ceil(100 / 20);
+          res.render("rent", {
+            home: found,
+            page: req.query.page || 1,
+            total: await findLength(),
+          });
         });
     } else {
       Home.find({

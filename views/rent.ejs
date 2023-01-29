@@ -24,6 +24,9 @@
       text-decoration: none;
       text-transform: capitalize;
     }
+        .body{
+      margin-bottom:100px;
+    } 
 
     header {
       z-index: 1000;
@@ -187,11 +190,11 @@
     }
 
     .next {
-      display: flex;
-      justify-content: center;
+      border-radius:20px;
       margin-bottom: 120px;
       margin-top: 50px;
-
+      display: inline;
+      width:70px;
     }
 
     .rating {
@@ -272,10 +275,15 @@
       border-bottom: 0.5px solid #9E9E9E;
       margin: 25px;
     }
+    .nextprev{
+            width:100%;
+      height:200px;
+      text-align: center;
+    }
   </style>
 </head>
 
-<body>
+<body class="body"> 
 
   <!--   Navbar -->
   <header class="navbar top-nav">
@@ -447,11 +455,20 @@
       </div>
 
       <% }) %>
+            <% } %>
     </div>
+    <div  class='nextprev'>
+    <% if(page>1){ %>
     <div class="next">
-      <a href='/rent'><button class="btn-2 btn-lg">Next Page</button></a>
-      <% } %>
+      <a href='/rent?page=<%= page-1 %>'><button class="btn btn-lg">previous Page</button></a>
     </div>
+    <% } %>
+    <% if(page<=total){ %>
+    <div class="next">
+      <a href='/rent?page=<%= page+1 %>'><button class="btn btn-lg">Next Page</button></a>
+    </div>
+    <% } %>
+  </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
