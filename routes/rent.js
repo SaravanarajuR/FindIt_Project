@@ -11,7 +11,7 @@ function findLength() {
 router.get("/", async function (req, res) {
   if (req.session.isAuthenticated) {
     if (!req.query.search) {
-      const page = req.query.page || 1;
+      const page = Number(req.query.page) || 1;
       const contentPerPage = 20;
       const toSkip = (page - 1) * contentPerPage;
       Home.find()
