@@ -508,30 +508,33 @@
       <% }) %>
             <% } %>
     </div>
-    <div  class='nextprev'>
+    <div  class='nextprev-top'>
     <% if(page>1){ %>
-    <div class="next">
+    <div class="next-1">
       <% if(url.length===0 && filters.length===0){ %>
-        <a href='/rent?page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
+        <a href='/rent?page=<%= Number(page)-1 %>'><button class="btn-2 btn btn-lg">previous Page</button></a>
       <% }else if(url.length>0){ %>
-              <a href='/rent?search=<%= url %>&page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
+              <a href='/rent?search=<%= url %>&page=<%= Number(page)-1 %>'><button class="btn-2 btn btn-lg">previous Page</button></a>
         <% }else if(filters.length>0){ %>
-             <a href='/rent?filter=<%= filters %>&page=<%= Number(page)-1 %>'><button class="btn btn-lg">previous Page</button></a>
+             <a href='/rent?filter=<%= filters %>&page=<%= Number(page)-1 %>'><button class="btn-2 btn btn-lg">previous Page</button></a>
         <% } %>
     </div>
     <% } %>
      <% if(page<total){ %> 
-      <div class="next">
+      <div class="next-2">
     <% if(url.length===0 && filters.length===0){ %>
-      <a href='/rent?page=<%= Number(page)+1 %>'><button class="btn btn-2 btn-lg">Next Page</button></a>
+      <a href='/rent?page=<%= Number(page)+1 %>'><button class="btn-2 btn btn-lg">Next Page</button></a>
       <% }else if(url.length>0){ %>
-        <a href='/rent?search=<%= url %>&page=<%= Number(page)+1 %>'><button class="btn btn-lg">Next Page</button></a>
+        <a href='/rent?search=<%= url %>&page=<%= Number(page)+1 %>'><button class="btn-2 btn btn-lg">Next Page</button></a>
         <% }else if(filters.length>0){ %>
-             <a href='/rent?filter=<%= filters %>&page=<%= Number(page)+1 %>'><button class="btn btn-lg">Next Page</button></a>
+             <a href='/rent?filter=<%= filters %>&page=<%= Number(page)+1 %>'><button class="btn-2 btn btn-lg">Next Page</button></a>
         <% } %>
     </div>
           <% } %>
           </div>
+            <div style="text-align:center">
+    <h5 class="btn" disabled>Page <%= page %> out of <%= total %></h5>
+      </div>
     </div>
   </div>
   </div>

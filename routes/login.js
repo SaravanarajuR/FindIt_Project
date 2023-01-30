@@ -35,8 +35,7 @@ router.post("/", async (req, res) => {
         req.session.isAuthenticated = true;
         res.redirect("/home");
       } else {
-        console.log("wrong pass");
-        req.flash("n", "wrong password");
+        req.flash("n", "Incorrect password");
         res.redirect("/login");
       }
     } else if (user && user.verified === "FALSE") {
@@ -69,6 +68,8 @@ router.post("/", async (req, res) => {
           res.redirect("/verify");
         } else {
           resetOtp(req.body.mail, createdOtp);
+          req.flash("m", [req.body.mail, "You are not verified yet"]);
+          res.redirect("/verify");
         }
       });
     } else {

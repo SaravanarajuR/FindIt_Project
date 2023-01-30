@@ -31,13 +31,17 @@ router.post("/", (req, res) => {
             verified: "TRUE",
           }
         ).then((f) => {
-          res.redirect("/home");
+          req.flash("n", "Verification Successfull");
+          res.redirect("/login");
         });
       } else {
         User.findOneAndRemove({
           email: req.body.mail,
         }).then((f) => {});
-        req.flash("message", [req.body.mail, "OTP does not match try again"]);
+        req.flash("message", [
+          req.body.mail,
+          "OTP does not match try signing up again",
+        ]);
         res.redirect("/signup");
       }
     }
