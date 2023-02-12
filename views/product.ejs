@@ -172,7 +172,7 @@
 
         .heads {
             font-family: 'Tiro Kannada', serif;
-            font-size: 1.3rem;
+            font-size: 1.7rem;
             padding: 10px;
             color: var(--red);
             background-color: var(--light-red);
@@ -394,20 +394,14 @@
             <div class="input-group mb-2">
                 <h3 class="heads input-group-text ren1">Address</h3>
                 <h3 class="ren2 form-control">
-                    <%= (home.houseNumber).replaceAll('_',' ').replaceAll('NA','') %>|<%= (home.regio1).replaceAll('_',' ').replaceAll('NA','') %>|
-                    <%= (home.regio2).replaceAll('_',' ').replaceAll('NA','') %>| Germany</h3>
+                    <%= (home.houseNumber).replaceAll('_',' ').replaceAll('NA','') %>,<%= (home.regio1).replaceAll('_',' ').replaceAll('NA','') %>,
+                    <%= (home.regio2).replaceAll('_',' ').replaceAll('NA','') %>, Germany</h3>
             </div>
         </div>
         <div id="predict">
             <center>
-                <h4 class="heads" style="margin-top: 10px;">Wanna know future price predictions of this property?</h4>
-                <div class="input-group">
-                    <label class="input-group-text" for="inp">Year</label>
-                    <input class="form-control" id="year" name="inp" type="number">
-                </div>
-                <button class="btn bt btn-light" id="buton" type="submit">Predict Cost</button>
-                <button style="visibility: hidden;" id="res" class="btn btn-light" disabled></button>
-
+                <h4 class="heads" style="margin-top: 10px;">Actuall Price based on analysing</h4>
+                <button id="res" class="btn btn-light" disabled>$<%= p %></button>
         </div>
         </center>
     </div>
@@ -415,7 +409,7 @@
         <div class="midpage">
             <center>
                 <button style="background-color:var(--light-red);color:red;padding:10px 20px;font-weight:700;"
-                    class="btn-lg">You Might Also Like in <%= home.regio1 %></button>
+                    class="btn-lg heads">You Might Also Like in <%= home.regio1 %></button>
             </center>
             <div style="margin-top:1%" class="row">
 
@@ -439,7 +433,7 @@
                         <h3 class="ren21 form-control"> $ <%= mat.totalRent %></h3>
                     </div>
                     <h4 class="rating"><%= '⭐'.repeat(mat.Rating) %></h4>
-                    <a href="/homedetails/:<%= mat._id %>"><button class="btn openbtn">Open</button></a>
+                    <a href="/homedetails?id=<%= mat._id %>"><button class="btn openbtn">Open</button></a>
                 </div>
 
                 <% }) %>
@@ -450,15 +444,6 @@
         </script>
 
 </body>
-<script>
-    document.getElementById('buton').addEventListener('click', () => {
-        let val = document.getElementById('year').value;
-        if (val > 2019) {
-            document.getElementById('res').setAttribute('class', 'visible');
-            let pr = (((val - 2019) * 52) + Number(document.getElementById('tr').innerText))
-            document.getElementById('res').innerText = `Predicted cost--$ ${pr}`;
-        }
-    })
-</script>
+
 
 </html>

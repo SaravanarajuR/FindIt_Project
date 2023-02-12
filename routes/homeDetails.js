@@ -3,21 +3,22 @@ const router = express.Router();
 
 const Home = require("../models/homeModel");
 
+const predict = require("../controllers/prediction");
+
 router.get("/", (req, res) => {
   if (req.session.isAuthenticated) {
-    const id = req.params.id;
-    Home.findOne({ _id: id.substring(1) }, function (err, found) {
-      let m = found;
+    const id = req.query.id;
+    Home.findOne({ _id: id }, async function (err, found) {
       let foundCity = found.regio1;
       let rate = found.Rating;
       let rent = found.totalRent;
+      let p = await predict(found.totalRent, found.typeOfFlat, found.regio1);
       Home.find({ regio1: foundCity })
         .where("totalRent")
         .lt(rent)
-        .ne("0")
         .where("Rating")
         .gte(rate)
-        .then((f2) => {
+        .then(async (f2) => {
           let s2 = f2;
           s2.sort((a, b) => {
             if (a.totalRent >= b.totalRent) {
@@ -31,7 +32,7 @@ router.get("/", (req, res) => {
             }
           }).reverse();
           let c = s2.slice(0, 20);
-          res.render("product", { home: m, ext: c });
+          res.render("product", { home: found, ext: c, p });
         });
     });
   } else {

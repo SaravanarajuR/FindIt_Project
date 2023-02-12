@@ -30,6 +30,9 @@ const homeSchema = {
   lastRefurbish: String,
   Rating: Number,
   mail: String,
+  GrLivArea: Number,
+  FullBath: Number,
+  GarageCars: Number,
   new: {
     type: "Object",
     created: {

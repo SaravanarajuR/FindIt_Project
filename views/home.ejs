@@ -821,7 +821,6 @@
       <div class="salebtn buttons-container">
         <a href="/rent" class="btn">for rent</a>
         <a href="/sale/addhome" class="btn">Seller</a>
-        <a href="/predict" class="btn">Predictions</a>
       </div>
     </section>
 
@@ -882,7 +881,7 @@
               <h3><i class="fas fa-expand"></i> <%= mat1.noRooms %></h3>
             </div>
             <div class="buttons">
-              <a href="/homedetails/:<%= mat1._id %>" class="btn"
+              <a href="/homedetails?id=<%= mat1._id %>" class="btn"
                 >view details</a
               >
             </div>

@@ -38,14 +38,14 @@ mongoose.connect(
 const store = new mongoSession({
   uri: "mongodb+srv://saravana1:qwertyuioplkjhgfdsa@cluster0.gdr7v46.mongodb.net/findit?retryWrites=true&w=majority",
   collection: "session",
-  interval: "600000",
+  interval: "3600000",
 });
 
 app.use(
   session({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized: false,
-    cookie: { maxAge: 600000, isAuthenticated: "FALSE" },
+    cookie: { maxAge: 3600000, isAuthenticated: "FALSE" },
     resave: false,
     store: store,
   })
@@ -61,6 +61,7 @@ const addhome = require("./routes/addhome");
 const verify = require("./routes/verify");
 const details = require("./routes/homeDetails");
 const home = require("./routes/home");
+const { rand } = require("@tensorflow/tfjs");
 
 const storage = multer.diskStorage({
   dest: function (req, file, cb) {
@@ -73,6 +74,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+const Home = require("./models/homeModel");
+
 //..................................................request,responses...........................................
 
 app.use("/signup", signup);
@@ -82,7 +85,7 @@ app.use("/sale/addhome", addhome);
 app.use("/logout", logout);
 app.use("/verify", verify);
 app.use("/home", home);
-app.use("/homedetails/:id", details);
+app.use("/homedetails", details);
 
 //...................................................additional cases...........................................
 app.get("/", (req, res) => {
@@ -93,6 +96,28 @@ app.get("/predict", (req, res) => {
   if (req.session.isAuthenticated) {
     res.redirect("https://upu0n1.csb.app/");
   }
+});
+
+app.get("/add", (req, res) => {
+  Home.find()
+    .where("totalRent")
+    .equals("NA")
+    .then((f) => {
+      let i = 0;
+      f.map((k) => {
+        Home.findOneAndUpdate(
+          { id: k.id },
+          { totalRent: String(Math.floor(Math.random() * 100) + 900) }
+        ).then((n) => {
+          console.log(i);
+          i++;
+        });
+      });
+    });
+});
+
+app.get("/count", async function (req, res) {
+  console.log(await Home.count({ totalRent: "NA" }));
 });
 
 app.listen(3000, () => {

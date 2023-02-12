@@ -31,6 +31,10 @@ router.get("/", async function (req, res) {
       const contentPerPage = 20;
       const toSkip = (page - 1) * contentPerPage;
       Home.find()
+        .where("totalRent")
+        .ne("NA")
+        .where("totalRent")
+        .ne("0")
         .skip(toSkip)
         .limit(contentPerPage)
         .then(async (found) => {
@@ -57,6 +61,10 @@ router.get("/", async function (req, res) {
       Home.find({
         $text: { $search: req.query.search },
       })
+        .where("totalRent")
+        .ne("NA")
+        .where("totalRent")
+        .ne("0")
         .skip(toSkip)
         .limit(contentPerPage)
         .then(async function (f) {
@@ -89,6 +97,10 @@ router.get("/", async function (req, res) {
         interiorQuality: arr[2],
         typeOfFlat: arr[3],
       })
+        .where("totalRent")
+        .ne("NA")
+        .where("totalRent")
+        .ne("0")
         .skip(toSkip)
         .limit(contentPerPage)
         .then((f) => {
@@ -126,6 +138,10 @@ router.post("/", async function (req, res) {
     interiorQuality: req.body.quality,
     typeOfFlat: req.body.type,
   })
+    .where("totalRent")
+    .ne("NA")
+    .where("totalRent")
+    .ne("0")
     .skip(toSkip)
     .limit(contentPerPage)
     .then(async (f) => {
