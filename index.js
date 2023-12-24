@@ -15,6 +15,7 @@ const app = express();
 
 app.use(cookieParser());
 app.set("view engine", "ejs");
+const mySecret = process.env['mongopass']
 app.use(express.static("uploads"));
 app.use(express.static("public"));
 app.use(bodyParser.json());

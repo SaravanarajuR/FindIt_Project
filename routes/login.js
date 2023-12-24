@@ -18,9 +18,20 @@ function resetOtp(gmail, otp) {
 }
 
 router.get("/", (req, res) => {
+  function generateCaptcha() {
+    let captcha = "";
+    for (let i = 0; i < 6; i++) {
+      let textcase = Math.round(Math.random()) ? 65 : 97;
+      captcha += String.fromCharCode(Math.floor(Math.random() * 25) + textcase);
+    }
+    return captcha;
+  }
+
   const p = req.flash("n");
+
   res.render("signup", {
-    p,
+    p: p,
+    captcha: generateCaptcha(),
   });
 });
 

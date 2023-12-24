@@ -2,12 +2,22 @@ const express = require("express");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
-
+const Otp = require("../models/otpModel");
 const resetOtp = require("../controllers/otp");
 
 const get = function (req, res) {
   const m = req.flash("message");
-  res.render("login", { m });
+
+  function generateCaptcha() {
+    let captcha = "";
+    for (let i = 0; i < 6; i++) {
+      let textcase = Math.round(Math.random()) ? 65 : 97;
+      captcha += String.fromCharCode(Math.floor(Math.random() * 25) + textcase);
+    }
+    return captcha;
+  }
+
+  res.render("login", { m, captcha: generateCaptcha() });
 };
 
 const post = (req, res) => {
